@@ -1,315 +1,416 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="no" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ken Greibesland</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'Inter', sans-serif;
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+      --text-xl: clamp(1.75rem, 1rem + 2.5vw, 2.75rem);
+      --text-hero: clamp(2.2rem, 0.5rem + 5vw, 4rem);
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --color-bg: #fafaf8;
+      --color-text: #111;
+      --color-muted: #666;
+      --color-faint: #aaa;
+      --color-border: rgba(0,0,0,0.08);
+      --color-tag: #f0efe9;
+      --color-accent: #111;
+      --max-width: 680px;
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: #f9f9f7;
-      color: #111;
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-size: var(--text-base);
+      line-height: 1.65;
     }
 
     /* NAV */
     nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-4) var(--space-6);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 24px 48px;
-      background: #fff;
-      border-bottom: 1px solid #eee;
     }
-    nav .logo { font-weight: 700; font-size: 1.1rem; }
-    nav a {
-      color: #555;
+    .nav-name {
+      font-family: var(--font-display);
+      font-size: var(--text-base);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+    .nav-links { display: flex; gap: var(--space-6); }
+    .nav-links a {
+      font-size: var(--text-sm);
+      color: var(--color-muted);
       text-decoration: none;
-      margin-left: 28px;
-      font-size: 0.9rem;
+      transition: color 0.15s;
     }
-    nav a:hover { color: #111; }
+    .nav-links a:hover { color: var(--color-text); }
+
+    /* MAIN CONTAINER */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
 
     /* HERO */
     .hero {
-      max-width: 720px;
-      margin: 100px auto 80px;
-      padding: 0 24px;
+      padding: var(--space-20) 0 var(--space-16);
     }
-    .hero .badge {
-      display: inline-block;
-      background: #e8f5e9;
-      color: #2e7d32;
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 4px 12px;
-      border-radius: 20px;
-      margin-bottom: 20px;
-      letter-spacing: 0.5px;
+    .hero-eyebrow {
+      font-size: var(--text-sm);
+      color: var(--color-muted);
+      margin-bottom: var(--space-6);
+    }
+    .hero-eyebrow a {
+      color: var(--color-text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
     .hero h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 20px;
+      font-family: var(--font-display);
+      font-size: var(--text-hero);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-8);
     }
-    .hero h1 span { color: #2e7d32; }
-    .hero p {
-      font-size: 1.1rem;
-      color: #555;
-      line-height: 1.7;
-      max-width: 560px;
-      margin-bottom: 36px;
+    .hero-intro {
+      font-size: var(--text-base);
+      color: var(--color-muted);
+      max-width: 55ch;
+      line-height: 1.75;
     }
-    .hero-links a {
-      display: inline-block;
-      margin-right: 12px;
-      padding: 10px 22px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
+
+    /* DIVIDER */
+    hr {
+      border: none;
+      border-top: 1px solid var(--color-border);
+      margin: var(--space-16) 0;
     }
-    .btn-primary {
-      background: #111;
-      color: #fff;
-    }
-    .btn-primary:hover { background: #2e7d32; }
-    .btn-secondary {
-      background: #fff;
-      color: #111;
-      border: 1.5px solid #ddd;
-    }
-    .btn-secondary:hover { border-color: #111; }
 
     /* SECTION */
-    section {
-      max-width: 720px;
-      margin: 0 auto 80px;
-      padding: 0 24px;
+    .section { margin-bottom: var(--space-16); }
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-8);
     }
-    section h2 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 24px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid #eee;
-    }
-
-    /* OM MEG */
-    .om-meg p {
-      color: #444;
-      line-height: 1.75;
-      font-size: 1rem;
+    .section-subtext {
+      font-size: var(--text-sm);
+      color: var(--color-muted);
+      margin-top: calc(-1 * var(--space-6));
+      margin-bottom: var(--space-8);
     }
 
-    /* ERFARING */
-    .erfaring-item {
-      display: flex;
-      gap: 20px;
-      margin-bottom: 28px;
-      align-items: flex-start;
-    }
-    .erfaring-dot {
-      width: 10px;
-      height: 10px;
-      background: #2e7d32;
-      border-radius: 50%;
-      margin-top: 6px;
-      flex-shrink: 0;
-    }
-    .erfaring-item h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
-    .erfaring-item .meta { font-size: 0.83rem; color: #888; margin-bottom: 6px; }
-    .erfaring-item p { font-size: 0.93rem; color: #555; line-height: 1.6; }
-
-    /* PROSJEKTER */
-    .prosjekt-kort {
-      background: #fff;
-      border: 1px solid #eee;
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 16px;
-      transition: box-shadow 0.2s;
-    }
-    .prosjekt-kort:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
-    .prosjekt-kort h3 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
-    .prosjekt-kort p { font-size: 0.9rem; color: #666; line-height: 1.6; margin-bottom: 12px; }
-    .prosjekt-kort a {
-      font-size: 0.85rem;
-      color: #2e7d32;
+    /* CARDS */
+    .card {
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-6) 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-4);
+      align-items: start;
       text-decoration: none;
-      font-weight: 600;
+      color: inherit;
+      cursor: default;
     }
-    .prosjekt-kort a:hover { text-decoration: underline; }
-
-    /* SKILLS */
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .skill-tag {
-      background: #fff;
-      border: 1.5px solid #e0e0e0;
-      border-radius: 8px;
-      padding: 8px 16px;
-      font-size: 0.85rem;
+    .card:last-child { border-bottom: 1px solid var(--color-border); }
+    .card-title {
+      font-size: var(--text-base);
       font-weight: 500;
-      color: #333;
+      margin-bottom: var(--space-2);
+    }
+    .card-desc {
+      font-size: var(--text-sm);
+      color: var(--color-muted);
+      max-width: 52ch;
+      line-height: 1.6;
+    }
+    .card-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--space-2);
+    }
+    .card-year {
+      font-size: var(--text-sm);
+      color: var(--color-faint);
+      white-space: nowrap;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--color-tag);
+      color: var(--color-muted);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    /* BLOGG */
+    .post {
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-4) 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .post:last-child { border-bottom: 1px solid var(--color-border); }
+    .post-title {
+      font-size: var(--text-base);
+      color: var(--color-text);
+      text-decoration: none;
+    }
+    .post-title:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .post-date {
+      font-size: var(--text-sm);
+      color: var(--color-faint);
+      white-space: nowrap;
+      margin-left: var(--space-4);
     }
 
     /* KONTAKT */
-    .kontakt-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+    .contact-section { padding: var(--space-16) 0; }
+    .contact-section h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-4);
     }
-    .kontakt-rad {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-size: 0.95rem;
+    .contact-section p {
+      font-size: var(--text-base);
+      color: var(--color-muted);
+      margin-bottom: var(--space-8);
+      max-width: 48ch;
     }
-    .kontakt-rad .ikon {
-      width: 36px;
-      height: 36px;
-      background: #f0f0f0;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
+    .contact-btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: var(--color-text);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: opacity 0.15s;
     }
-    .kontakt-rad a { color: #2e7d32; text-decoration: none; font-weight: 500; }
-    .kontakt-rad a:hover { text-decoration: underline; }
+    .contact-btn:hover { opacity: 0.8; }
 
     /* FOOTER */
     footer {
-      text-align: center;
-      padding: 32px;
-      color: #aaa;
-      font-size: 0.82rem;
-      border-top: 1px solid #eee;
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-8) var(--space-6);
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-4);
     }
+    .footer-location {
+      font-size: var(--text-sm);
+      color: var(--color-faint);
+    }
+    .footer-links { display: flex; gap: var(--space-6); }
+    .footer-links a {
+      font-size: var(--text-sm);
+      color: var(--color-muted);
+      text-decoration: none;
+    }
+    .footer-links a:hover { color: var(--color-text); }
 
+    /* RESPONSIVE */
     @media (max-width: 600px) {
-      nav { padding: 18px 20px; }
-      .hero h1 { font-size: 2.1rem; }
-      nav .nav-links { display: none; }
+      nav { padding: var(--space-3) var(--space-4); }
+      .nav-links { gap: var(--space-4); }
+      .container { padding: 0 var(--space-4); }
+      .hero { padding: var(--space-12) 0 var(--space-12); }
+      .card { grid-template-columns: 1fr; }
+      .card-meta { flex-direction: row; align-items: center; }
+      footer { padding: var(--space-6) var(--space-4); }
     }
   </style>
 </head>
 <body>
 
+  <!-- NAV -->
   <nav>
-    <div class="logo">Ken Greibesland</div>
+    <div class="nav-name">Ken Greibesland</div>
     <div class="nav-links">
-      <a href="#om">Om meg</a>
-      <a href="#erfaring">Erfaring</a>
       <a href="#prosjekter">Prosjekter</a>
+      <a href="#skriving">Skriving</a>
       <a href="#kontakt">Kontakt</a>
     </div>
   </nav>
 
-  <div class="hero">
-    <div class="badge"> Bergen, Norge</div>
-    <h1>Analytiker &<br><span>strategistudent</span></h1>
-    <p>Student ved Norges Handelshøyskole med lidenskap for forretningsanalyse, strategi og teknologi. Jobber med datadrevne beslutninger og bygger løsninger som skaper reell verdi.</p>
-    <div class="hero-links">
-      <a href="#kontakt" class="btn-primary">Ta kontakt</a>
-      <a href="https://github.com/kengreibesland" target="_blank" class="btn-secondary">GitHub →</a>
-    </div>
+  <div class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+      <p class="hero-eyebrow">
+        Analytiker hos <a href="https://tekki.no" target="_blank" rel="noopener noreferrer">Tekki AS</a> · Student ved NHH
+      </p>
+      <h1>Bygger ting, studerer økonomi, løser cases 🚀</h1>
+      <p class="hero-intro">
+        Hei! Jeg heter Ken. Norsk-japansk, oppvokst i Oslo, bor nå i Bergen. Jeg liker å bygge ting fra bunnen av – bedrifter, analyser, nettsider. Spør meg om strategi, data eller fotball.
+      </p>
+    </section>
+
+    <hr>
+
+    <!-- PROSJEKTER & ERFARING -->
+    <section class="section" id="prosjekter">
+      <h2 class="section-heading">Noen ting jeg har jobbet med.</h2>
+      <p class="section-subtext">Et utvalg av prosjekter og erfaringer.</p>
+
+      <div class="card">
+        <div>
+          <div class="card-title">Kartla det norske B2B-datamarkedet</div>
+          <div class="card-desc">Benchmarket Firmalisten mot konkurrenter i et NOK 250M-marked for å identifisere høyeste-ROI produktprioriteringer for Tekki AS.</div>
+        </div>
+        <div class="card-meta">
+          <span class="card-year">2026</span>
+          <span class="tag">Consulting</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <div class="card-title">2. plass i internasjonal case-konkurranse</div>
+          <div class="card-desc">Representerte NHHS Case Club i Reykjavik University NCC 2026. Ledet finansdelen i et 15-timers case for Alvotech og landet på pallen i Division A.</div>
+        </div>
+        <div class="card-meta">
+          <span class="card-year">2026</span>
+          <span class="tag">Case</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <div class="card-title">Vekst for en nordisk aquaculture-startup</div>
+          <div class="card-desc">Bygde og gjennomførte LinkedIn-strategi for Sensorglobe. Resulterte i 20% vekst i følgere og 40% økning i engasjement på tre måneder.</div>
+        </div>
+        <div class="card-meta">
+          <span class="card-year">2026</span>
+          <span class="tag">Consulting</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <div class="card-title">Navigerte nordiske kraftmarkeder for Versiro</div>
+          <div class="card-desc">Bygde onboarding-deck og benchmarket 10+ energitech-selskaper i Norden. Presenterte funn direkte til CEO og informerte kommersiell posisjonering.</div>
+        </div>
+        <div class="card-meta">
+          <span class="card-year">2025</span>
+          <span class="tag">Consulting</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <div class="card-title">Seriegull og 40% mer oppmøte</div>
+          <div class="card-desc">UEFA C-lisensiert trener hos Heming IL – blant Norges yngste med kvalifikasjonen. Ledet 25+ ungdomsutøvere til seriegull med rundt 80% seierrate.</div>
+        </div>
+        <div class="card-meta">
+          <span class="card-year">2023–2025</span>
+          <span class="tag">Ledelse</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <div class="card-title">Fra idé til betalende kunder – Quicknet UB</div>
+          <div class="card-desc">Medgründet en fotball-startup som produserte et mål-montert rebounder-nett. Ledet et team på 5 fra konsept til salg og sikret de første klubbpartnerskapene.</div>
+        </div>
+        <div class="card-meta">
+          <span class="card-year">2023–2024</span>
+          <span class="tag">Gründer</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <div class="card-title">0 til 10 000 følgere – solgt</div>
+          <div class="card-desc">Bygde og skalerte Financerevenue fra null til over 10 000 følgere og 270 000 rekkevidde innen 30 dager. Solgt mai 2023.</div>
+        </div>
+        <div class="card-meta">
+          <span class="card-year">2022–2023</span>
+          <span class="tag">Gründer</span>
+        </div>
+      </div>
+
+    </section>
+
+    <hr>
+
+    <!-- SKRIVING -->
+    <section class="section" id="skriving">
+      <h2 class="section-heading">Tanker og notater.</h2>
+      <p class="section-subtext">Jeg skriver ikke så mye ennå.</p>
+
+      <div class="post">
+        <span class="post-title">Kommer snart – første innlegg er på vei</span>
+        <span class="post-date">2026</span>
+      </div>
+
+    </section>
+
+    <hr>
+
+    <!-- KONTAKT -->
+    <section class="contact-section" id="kontakt">
+      <h2>La oss ta en prat 👋</h2>
+      <p>Alltid åpen for en god samtale – om prosjekter, ideer, cases eller bare for å bli kjent.</p>
+      <a href="mailto:kengreibesland@gmail.com" class="contact-btn">Si hei</a>
+    </section>
+
   </div>
 
-  <section id="om" class="om-meg">
-    <h2>Om meg</h2>
-    <p>Jeg er en nysgjerrig og analytisk student ved Norges Handelshøyskole (NHH) i Bergen. Jeg er opptatt av å forstå hvordan bedrifter fungerer og hvordan de kan forbedres. Til daglig jobber jeg med forretningsanalyse hos Tekki AS, der jeg bidrar til datadrevne beslutninger og strategisk utvikling. Jeg trives i skjæringspunktet mellom tall, teknologi og mennesker.</p>
-  </section>
-
-  <section id="erfaring">
-    <h2>Erfaring</h2>
-
-    <div class="erfaring-item">
-      <div class="erfaring-dot"></div>
-      <div>
-        <h3>Analytiker – Tekki AS</h3>
-        <div class="meta">2024 – nå · Bergen</div>
-        <p>Forretningsanalyse, datadrevne innsikter og strategisk rådgivning for bedriftskunder.</p>
-      </div>
-    </div>
-
-    <div class="erfaring-item">
-      <div class="erfaring-dot"></div>
-      <div>
-        <h3>Daglig leder & Medgründer – Fotball-startup</h3>
-        <div class="meta">2023 – 2024</div>
-        <p>Grunnla og ledet en startup rettet mot fotballbransjen. Ansvarlig for strategi, produktutvikling og investorkontakt.</p>
-      </div>
-    </div>
-
-    <div class="erfaring-item">
-      <div class="erfaring-dot"></div>
-      <div>
-        <h3>Student – NHH (Norges Handelshøyskole)</h3>
-        <div class="meta">2023 – nå · Bergen</div>
-        <p>Bachelor med fokus på strategi, økonomi og kvantitativ analyse.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="prosjekter">
-    <h2>Prosjekter</h2>
-
-    <div class="prosjekt-kort">
-      <h3>🔍 Firmalisten-analyse</h3>
-      <p>Systematisk feature-analyse og konkurransesammenligning av norske firmaregistertjenester som Firmalisten, Proff og Purehelp. Laget som del av et konsulentoppdrag.</p>
-      <a href="https://github.com/kengreibesland/firmalisten-analyse" target="_blank">Se prosjektet på GitHub →</a>
-    </div>
-
-    <div class="prosjekt-kort">
-      <h3>🌐 Personlig nettside</h3>
-      <p>Bygget denne nettsiden fra bunnen av med HTML og CSS, publisert via GitHub Pages. Første steg inn i webutvikling og versjonskontroll.</p>
-      <a href="https://github.com/kengreibesland" target="_blank">Se GitHub-profil →</a>
-    </div>
-  </section>
-
-  <section id="skills">
-    <h2>Ferdigheter</h2>
-    <div class="skills-grid">
-      <span class="skill-tag">Forretningsanalyse</span>
-      <span class="skill-tag">Strategi</span>
-      <span class="skill-tag">Excel & datamodellering</span>
-      <span class="skill-tag">HTML & CSS</span>
-      <span class="skill-tag">Git & GitHub</span>
-      <span class="skill-tag">LinkedIn-strategi</span>
-      <span class="skill-tag">Prosjektledelse</span>
-      <span class="skill-tag">Bærekraft</span>
-    </div>
-  </section>
-
-  <section id="kontakt">
-    <h2>Kontakt</h2>
-    <div class="kontakt-grid">
-      <div class="kontakt-rad">
-        <div class="ikon">✉️</div>
-        <a href="mailto:kengreibesland@gmail.com">kengreibesland@gmail.com</a>
-      </div>
-      <div class="kontakt-rad">
-        <div class="ikon">💼</div>
-        <a href="https://linkedin.com/in/kengreibesland" target="_blank">linkedin.com/in/kengreibesland</a>
-      </div>
-      <div class="kontakt-rad">
-        <div class="ikon">🐙</div>
-        <a href="https://github.com/kengreibesland" target="_blank">github.com/kengreibesland</a>
-      </div>
-    </div>
-  </section>
-
+  <!-- FOOTER -->
   <footer>
-    © 2026 Ken Greibesland · Laget med HTML & CSS · Publisert via GitHub Pages
+    <div class="footer-location">Bergen · Oslo</div>
+    <div class="footer-links">
+      <a href="http://www.linkedin.com/in/ken-greibesland" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/kengreibesland" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="mailto:kengreibesland@gmail.com">E-post</a>
+    </div>
   </footer>
 
 </body>
