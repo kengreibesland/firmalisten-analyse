@@ -1,5 +1,3 @@
-# Firmalisten – Notater (Ken)
-
 ## 1. Oppdrag og mål
 - Konkurranseanalyse av Firmalisten vs Proff, Purehelp, Roaring, Regnskapstall m.fl.
 - Levere: feature-sammenligning, ROT-analyse, roadmap.
@@ -7,14 +5,22 @@
 ## 2. Viktige sitater fra Vidar
 - «Jobb sakte, men presist.»
 - «Du må styre mest selv, tenk på at du skal spare oss så mye tid som mulig.»
-- (Fyll inn flere etter hvert)
 
-## 3. Firmalisten – slik jeg forstår det nå
-- Kort beskrivelse med egne ord.
-- Hvem jeg tror er drømmekunden.
-- Hva som virker unikt vs Proff/Purehelp.
+## 3. Firmalisten
+- Firmalisten er et norsk B2B-verktøy for å søke opp og kjøpe lister over bedrifter,
+bygget av Tekki AS som et alternativ til Proff.no.
+- Per nå selges ferdige bedriftslister enkeltvis fra 990 kr, uten krav om abonnement,
+mens Proff Forvalt koster mellom 4 150 og 16 583 kr i måneden.
+- Firmalisten retter seg mot salg og markedsføring (ikke finans/kreditt som Proff),
+og har dermed et tydeligere fokus på hvem som faktisk trenger produktet.
+- Drømmekunden på kort sikt: salgsteam i mellomstore bedrifter, rekrutteringsbyråer
+og markedsføringsbyråer som i dag betaler dyrt for Proff Forvalt.
+- Value propositioh: ingen bindingstid, lavere pris per oppslag, og potensial for
+avansert filtrering (f.eks. nettside-teknologi, responstid) som Proff ikke tilbyr.
+- Svakheten nå: mangler tilgang på regnskapsdata (koster 400k hos BRREG) og har
+færre datapunkter enn Proff, men dette er noe Tekki jobber mot å løse.
 
-## 4. Konkurrenter (stikkord)
+## 4. Konkurrenter
 - Proff:
 - Purehelp:
 - Roaring:
