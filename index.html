@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="no" data-theme="light">
+<html lang="no">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -12,258 +12,362 @@
 
     :root {
       --font-display: 'Instrument Serif', Georgia, serif;
-      --font-body: 'Inter', sans-serif;
-      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
-      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-      --text-lg: clamp(1.25rem, 1rem + 1vw, 1.75rem);
-      --text-xl: clamp(1.75rem, 1rem + 2.5vw, 2.75rem);
-      --text-hero: clamp(2.2rem, 0.5rem + 5vw, 4rem);
+      --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --text-xs: 0.75rem;
+      --text-sm: 0.875rem;
+      --text-base: 1rem;
+      --text-lg: 1.125rem;
+      --text-xl: 1.5rem;
+      --text-hero: clamp(2.2rem, 1.4rem + 3vw, 3.3rem);
+
+      --space-1: 0.25rem;
       --space-2: 0.5rem;
       --space-3: 0.75rem;
       --space-4: 1rem;
+      --space-5: 1.25rem;
       --space-6: 1.5rem;
       --space-8: 2rem;
+      --space-10: 2.5rem;
       --space-12: 3rem;
       --space-16: 4rem;
       --space-20: 5rem;
-      --color-bg: #fafaf8;
-      --color-text: #111;
-      --color-muted: #666;
-      --color-faint: #aaa;
+
+      --color-bg: #faf9f5;
+      --color-surface: #ffffff;
       --color-border: rgba(0,0,0,0.08);
-      --color-tag: #f0efe9;
-      --color-accent: #111;
-      --max-width: 680px;
+      --color-text: #111111;
+      --color-muted: #666666;
+      --color-faint: #aaaaaa;
+      --color-tag-bg: #f0eee7;
+      --color-tag-text: #555555;
+      --color-accent: #111111;
+
+      --max-width: 720px;
     }
 
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
 
     body {
       font-family: var(--font-body);
-      background: var(--color-bg);
-      color: var(--color-text);
       font-size: var(--text-base);
       line-height: 1.65;
+      color: var(--color-text);
+      background: radial-gradient(circle at top left, #f0ede4 0, #faf9f5 40%, #fdfdfb 100%);
+    }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-4) var(--space-16);
     }
 
     /* NAV */
     nav {
       position: sticky;
       top: 0;
-      z-index: 50;
-      background: var(--color-bg);
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: color-mix(in srgb, var(--color-bg) 80%, rgba(255,255,255,0.2) 20%);
       border-bottom: 1px solid var(--color-border);
-      padding: var(--space-4) var(--space-6);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-3) var(--space-4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
     .nav-name {
       font-family: var(--font-display);
       font-size: var(--text-base);
-      font-weight: 400;
       letter-spacing: -0.01em;
     }
-    .nav-links { display: flex; gap: var(--space-6); }
-    .nav-links a {
-      font-size: var(--text-sm);
-      color: var(--color-muted);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-    .nav-links a:hover { color: var(--color-text); }
 
-    /* MAIN CONTAINER */
-    .container {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 var(--space-6);
+    .nav-links {
+      display: flex;
+      gap: var(--space-4);
+      align-items: center;
+      font-size: var(--text-sm);
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--color-muted);
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-text);
+      border-color: var(--color-border);
     }
 
     /* HERO */
     .hero {
-      padding: var(--space-20) 0 var(--space-16);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--space-8);
+      padding: var(--space-16) var(--space-4) var(--space-12);
+      align-items: center;
     }
-    .hero-eyebrow {
-      font-size: var(--text-sm);
+
+    .hero-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 999px;
+      border: 1px solid var(--color-border);
+      background: radial-gradient(circle at 30% 20%, #ffffff, #e4dfd1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
       color: var(--color-muted);
-      margin-bottom: var(--space-6);
     }
-    .hero-eyebrow a {
-      color: var(--color-text);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    .hero h1 {
+
+    .hero-text h1 {
       font-family: var(--font-display);
       font-size: var(--text-hero);
       font-weight: 400;
+      letter-spacing: -0.03em;
       line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: var(--space-8);
+      margin-bottom: var(--space-4);
     }
+
+    .hero-tagline {
+      font-size: var(--text-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--color-muted);
+      margin-bottom: var(--space-4);
+    }
+
     .hero-intro {
       font-size: var(--text-base);
       color: var(--color-muted);
-      max-width: 55ch;
-      line-height: 1.75;
+      max-width: 46ch;
     }
 
-    /* DIVIDER */
-    hr {
-      border: none;
-      border-top: 1px solid var(--color-border);
-      margin: var(--space-16) 0;
+    /* SECTIONS */
+    section {
+      padding: 0 var(--space-4);
+      margin-top: var(--space-12);
     }
 
-    /* SECTION */
-    .section { margin-bottom: var(--space-16); }
     .section-heading {
-      font-family: var(--font-display);
-      font-size: var(--text-xl);
-      font-weight: 400;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: var(--space-8);
-    }
-    .section-subtext {
-      font-size: var(--text-sm);
-      color: var(--color-muted);
-      margin-top: calc(-1 * var(--space-6));
-      margin-bottom: var(--space-8);
-    }
-
-    /* CARDS */
-    .card {
-      border-top: 1px solid var(--color-border);
-      padding: var(--space-6) 0;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: var(--space-4);
-      align-items: start;
-      text-decoration: none;
-      color: inherit;
-      cursor: default;
-    }
-    .card:last-child { border-bottom: 1px solid var(--color-border); }
-    .card-title {
-      font-size: var(--text-base);
-      font-weight: 500;
-      margin-bottom: var(--space-2);
-    }
-    .card-desc {
-      font-size: var(--text-sm);
-      color: var(--color-muted);
-      max-width: 52ch;
-      line-height: 1.6;
-    }
-    .card-meta {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: var(--space-2);
-    }
-    .card-year {
-      font-size: var(--text-sm);
-      color: var(--color-faint);
-      white-space: nowrap;
-    }
-    .tag {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      background: var(--color-tag);
-      color: var(--color-muted);
-      padding: 3px 8px;
-      border-radius: 4px;
-    }
-
-    /* BLOGG */
-    .post {
-      border-top: 1px solid var(--color-border);
-      padding: var(--space-4) 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-    }
-    .post:last-child { border-bottom: 1px solid var(--color-border); }
-    .post-title {
-      font-size: var(--text-base);
-      color: var(--color-text);
-      text-decoration: none;
-    }
-    .post-title:hover { text-decoration: underline; text-underline-offset: 3px; }
-    .post-date {
-      font-size: var(--text-sm);
-      color: var(--color-faint);
-      white-space: nowrap;
-      margin-left: var(--space-4);
-    }
-
-    /* KONTAKT */
-    .contact-section { padding: var(--space-16) 0; }
-    .contact-section h2 {
       font-family: var(--font-display);
       font-size: var(--text-xl);
       font-weight: 400;
       letter-spacing: -0.02em;
       margin-bottom: var(--space-4);
     }
-    .contact-section p {
+
+    .section-sub {
+      font-size: var(--text-sm);
+      color: var(--color-muted);
+      margin-bottom: var(--space-4);
+    }
+
+    /* LIST / ITEMS */
+    .list {
+      border-top: 1px solid var(--color-border);
+    }
+
+    .item {
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--color-border);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      column-gap: var(--space-4);
+      row-gap: var(--space-2);
+      align-items: baseline;
+    }
+
+    .item-year {
+      font-size: var(--text-xs);
+      color: var(--color-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      white-space: nowrap;
+    }
+
+    .item-main {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .item-title {
+      font-size: var(--text-base);
+      font-weight: 500;
+    }
+
+    .item-meta {
+      font-size: var(--text-sm);
+      color: var(--color-muted);
+    }
+
+    .item-desc {
+      font-size: var(--text-sm);
+      color: var(--color-muted);
+      margin-top: var(--space-1);
+      max-width: 52ch;
+    }
+
+    .item-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-top: var(--space-2);
+    }
+
+    .tag-pill {
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--color-tag-bg);
+      color: var(--color-tag-text);
+    }
+
+    /* KONTAKT */
+    .contact {
+      margin-top: var(--space-16);
+      padding: 0 var(--space-4);
+    }
+
+    .contact h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-3);
+    }
+
+    .contact p {
       font-size: var(--text-base);
       color: var(--color-muted);
-      margin-bottom: var(--space-8);
-      max-width: 48ch;
+      margin-bottom: var(--space-6);
+      max-width: 46ch;
     }
-    .contact-btn {
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      align-items: center;
+    }
+
+    .btn-primary {
       display: inline-block;
-      padding: 12px 28px;
-      background: var(--color-text);
-      color: #fff;
-      font-family: var(--font-body);
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: var(--color-accent);
+      color: #ffffff;
       font-size: var(--text-sm);
-      font-weight: 500;
       text-decoration: none;
-      border-radius: 6px;
-      transition: opacity 0.15s;
+      font-weight: 500;
+      transition: opacity 0.15s ease, transform 0.15s ease;
     }
-    .contact-btn:hover { opacity: 0.8; }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .contact-inline {
+      font-size: var(--text-sm);
+      color: var(--color-muted);
+    }
+
+    .contact-inline a {
+      color: var(--color-text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 1px;
+    }
+
+    .contact-inline a:hover {
+      border-color: var(--color-text);
+    }
 
     /* FOOTER */
     footer {
       border-top: 1px solid var(--color-border);
-      padding: var(--space-8) var(--space-6);
-      max-width: var(--max-width);
-      margin: 0 auto;
+      margin-top: var(--space-16);
+      padding: var(--space-6) var(--space-4);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
       flex-wrap: wrap;
-      gap: var(--space-4);
-    }
-    .footer-location {
+      gap: var(--space-3);
+      align-items: center;
+      justify-content: space-between;
       font-size: var(--text-sm);
       color: var(--color-faint);
     }
-    .footer-links { display: flex; gap: var(--space-6); }
+
+    .footer-locs {
+      display: flex;
+      gap: var(--space-2);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--color-faint);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
     .footer-links a {
-      font-size: var(--text-sm);
       color: var(--color-muted);
       text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
     }
-    .footer-links a:hover { color: var(--color-text); }
+
+    .footer-links a:hover {
+      border-color: var(--color-border);
+    }
 
     /* RESPONSIVE */
-    @media (max-width: 600px) {
-      nav { padding: var(--space-3) var(--space-4); }
-      .nav-links { gap: var(--space-4); }
-      .container { padding: 0 var(--space-4); }
-      .hero { padding: var(--space-12) 0 var(--space-12); }
-      .card { grid-template-columns: 1fr; }
-      .card-meta { flex-direction: row; align-items: center; }
-      footer { padding: var(--space-6) var(--space-4); }
+    @media (max-width: 640px) {
+      .hero {
+        grid-template-columns: 1fr;
+        row-gap: var(--space-6);
+        padding-top: var(--space-12);
+      }
+      .hero-avatar {
+        order: -1;
+      }
+      .item {
+        grid-template-columns: 1fr;
+      }
+      .item-year {
+        order: -1;
+      }
+      .nav-inner {
+        padding-inline: var(--space-4);
+      }
+      .page {
+        padding-bottom: var(--space-12);
+      }
     }
   </style>
 </head>
@@ -271,148 +375,145 @@
 
   <!-- NAV -->
   <nav>
-    <div class="nav-name">Ken Greibesland</div>
-    <div class="nav-links">
-      <a href="#prosjekter">Prosjekter</a>
-      <a href="#skriving">Skriving</a>
-      <a href="#kontakt">Kontakt</a>
+    <div class="nav-inner">
+      <div class="nav-name">Ken Greibesland</div>
+      <div class="nav-links">
+        <a href="#arbeid">Arbeid</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
     </div>
   </nav>
 
-  <div class="container">
+  <main class="page">
 
     <!-- HERO -->
     <section class="hero">
-      <p class="hero-eyebrow">
-        Analytiker hos <a href="https://tekki.no" target="_blank" rel="noopener noreferrer">Tekki AS</a> · Student ved NHH
-      </p>
-      <h1>Bygger ting, studerer økonomi, løser cases 🚀</h1>
-      <p class="hero-intro">
-        Hei! Jeg heter Ken. Norsk-japansk, oppvokst i Oslo, bor nå i Bergen. Jeg liker å bygge ting fra bunnen av – bedrifter, analyser, nettsider. Spør meg om strategi, data eller fotball.
-      </p>
+      <div class="hero-text">
+        <div class="hero-tagline">Student, gründer og analytiker</div>
+        <h1>Bygger ting, studerer økonomi, liker å få ting til å skje.</h1>
+        <p class="hero-intro">
+          Hei! Jeg heter Ken. Vokste opp i Oslo, bor nå i Bergen. Jeg er drevet av entreprenørskap
+          og liker å bygge ting fra bunnen av – enten det er et selskap, en analyse eller en enkel nettside som denne.
+        </p>
+      </div>
+      <div class="hero-avatar">
+        KG
+      </div>
     </section>
 
-    <hr>
+    <!-- ARBEID / PROSJEKTER -->
+    <section id="arbeid">
+      <h2 class="section-heading">Ting jeg har brukt tid på.</h2>
+      <p class="section-sub">Et lite utvalg av jobber, prosjekter og eksperimenter.</p>
 
-    <!-- PROSJEKTER & ERFARING -->
-    <section class="section" id="prosjekter">
-      <h2 class="section-heading">Noen ting jeg har jobbet med.</h2>
-      <p class="section-subtext">Et utvalg av prosjekter og erfaringer.</p>
+      <div class="list">
 
-      <div class="card">
-        <div>
-          <div class="card-title">Kartla det norske B2B-datamarkedet</div>
-          <div class="card-desc">Benchmarket Firmalisten mot konkurrenter i et NOK 250M-marked for å identifisere høyeste-ROI produktprioriteringer for Tekki AS.</div>
-        </div>
-        <div class="card-meta">
-          <span class="card-year">2026</span>
-          <span class="tag">Consulting</span>
-        </div>
+        <article class="item">
+          <div class="item-year">2026–</div>
+          <div class="item-main">
+            <div class="item-title">Forretningsanalyse i Tekki</div>
+            <div class="item-meta">Jobb · Tekki AS</div>
+            <p class="item-desc">
+              Jobber med analyser og strukturering av B2B-prosjekter sammen med et lite team som liker å teste nye ideer raskt.
+            </p>
+            <div class="item-tags">
+              <span class="tag-pill">Jobb</span>
+              <span class="tag-pill">Analyse</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-year">2025–</div>
+          <div class="item-main">
+            <div class="item-title">Studentkonsulent i ScaleCenter-miljøet</div>
+            <div class="item-meta">Student · SEB ScaleCenter & Start NHH</div>
+            <p class="item-desc">
+              Forrige semester jobbet jeg med prosjekter for Versiro gjennom SEB sitt ScaleCenter. Nå følger jeg opp nye oppgaver for Sensorglobe via Start NHH sitt eget ScaleCenter.
+            </p>
+            <div class="item-tags">
+              <span class="tag-pill">Case</span>
+              <span class="tag-pill">Student</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-year">2026</div>
+          <div class="item-main">
+            <div class="item-title">Case-konkurranse i Reykjavik</div>
+            <div class="item-meta">NHHS Case Club</div>
+            <p class="item-desc">
+              Reiste til Island for å løse et 15-timers case med teamet mitt. Vi endte opp på 2. plass i divisjonen vår (i gruppe med CBS, BI og LAB).
+            </p>
+            <div class="item-tags">
+              <span class="tag-pill">Case</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-year">2023–2024</div>
+          <div class="item-main">
+            <div class="item-title">Quicknet – en fotball-startup</div>
+            <div class="item-meta">Gründer · Quicknet UB</div>
+            <p class="item-desc">
+              Bygget en enkel fysisk løsning for fotballspillere sammen med et lite team. Vi testet produktet i klubber og lærte mye underveis.
+            </p>
+            <div class="item-tags">
+              <span class="tag-pill">Gründer</span>
+              <span class="tag-pill">Fotball</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-year">2022–2023</div>
+          <div class="item-main">
+            <div class="item-title">Financerevenue på Instagram</div>
+            <div class="item-meta">Gründer · @Financerevenue</div>
+            <p class="item-desc">
+              Eksperimenterte med å lage innhold om økonomi på Instagram. Endte med å bygge opp en konto som jeg senere solgte videre.
+            </p>
+            <div class="item-tags">
+              <span class="tag-pill">Gründer</span>
+              <span class="tag-pill">Innhold</span>
+            </div>
+          </div>
+        </article>
+
       </div>
-
-      <div class="card">
-        <div>
-          <div class="card-title">2. plass i internasjonal case-konkurranse</div>
-          <div class="card-desc">Representerte NHHS Case Club i Reykjavik University NCC 2026. Ledet finansdelen i et 15-timers case for Alvotech og landet på pallen i Division A.</div>
-        </div>
-        <div class="card-meta">
-          <span class="card-year">2026</span>
-          <span class="tag">Case</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div>
-          <div class="card-title">Vekst for en nordisk aquaculture-startup</div>
-          <div class="card-desc">Bygde og gjennomførte LinkedIn-strategi for Sensorglobe. Resulterte i 20% vekst i følgere og 40% økning i engasjement på tre måneder.</div>
-        </div>
-        <div class="card-meta">
-          <span class="card-year">2026</span>
-          <span class="tag">Consulting</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div>
-          <div class="card-title">Navigerte nordiske kraftmarkeder for Versiro</div>
-          <div class="card-desc">Bygde onboarding-deck og benchmarket 10+ energitech-selskaper i Norden. Presenterte funn direkte til CEO og informerte kommersiell posisjonering.</div>
-        </div>
-        <div class="card-meta">
-          <span class="card-year">2025</span>
-          <span class="tag">Consulting</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div>
-          <div class="card-title">Seriegull og 40% mer oppmøte</div>
-          <div class="card-desc">UEFA C-lisensiert trener hos Heming IL – blant Norges yngste med kvalifikasjonen. Ledet 25+ ungdomsutøvere til seriegull med rundt 80% seierrate.</div>
-        </div>
-        <div class="card-meta">
-          <span class="card-year">2023–2025</span>
-          <span class="tag">Ledelse</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div>
-          <div class="card-title">Fra idé til betalende kunder – Quicknet UB</div>
-          <div class="card-desc">Medgründet en fotball-startup som produserte et mål-montert rebounder-nett. Ledet et team på 5 fra konsept til salg og sikret de første klubbpartnerskapene.</div>
-        </div>
-        <div class="card-meta">
-          <span class="card-year">2023–2024</span>
-          <span class="tag">Gründer</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div>
-          <div class="card-title">0 til 10 000 følgere – solgt</div>
-          <div class="card-desc">Bygde og skalerte Financerevenue fra null til over 10 000 følgere og 270 000 rekkevidde innen 30 dager. Solgt mai 2023.</div>
-        </div>
-        <div class="card-meta">
-          <span class="card-year">2022–2023</span>
-          <span class="tag">Gründer</span>
-        </div>
-      </div>
-
     </section>
-
-    <hr>
-
-    <!-- SKRIVING -->
-    <section class="section" id="skriving">
-      <h2 class="section-heading">Tanker og notater.</h2>
-      <p class="section-subtext">Jeg skriver ikke så mye ennå.</p>
-
-      <div class="post">
-        <span class="post-title">Kommer snart – første innlegg er på vei</span>
-        <span class="post-date">2026</span>
-      </div>
-
-    </section>
-
-    <hr>
 
     <!-- KONTAKT -->
-    <section class="contact-section" id="kontakt">
-      <h2>La oss ta en prat 👋</h2>
-      <p>Alltid åpen for en god samtale – om prosjekter, ideer, cases eller bare for å bli kjent.</p>
-      <a href="mailto:kengreibesland@gmail.com" class="contact-btn">Si hei</a>
+    <section class="contact" id="kontakt">
+      <h2>La oss ta en prat.</h2>
+      <p>
+        Hvis du vil snakke om prosjekter, idéer, cases eller bare ta en kaffe i Bergen eller Oslo,
+        er det bare å sende en melding.
+      </p>
+      <div class="contact-actions">
+        <a class="btn-primary" href="mailto:kengreibesland@gmail.com">Ta kontakt på e-post</a>
+        <span class="contact-inline">
+          eller finn meg på
+          <a href="https://www.linkedin.com/in/ken-greibesland" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+        </span>
+      </div>
     </section>
 
-  </div>
+  </main>
 
-  <!-- FOOTER -->
   <footer>
-    <div class="footer-location">Bergen · Oslo</div>
+    <div class="footer-locs">
+      <span>Bergen</span>
+      <span class="footer-dot"></span>
+      <span>Oslo</span>
+    </div>
     <div class="footer-links">
-      <a href="http://www.linkedin.com/in/ken-greibesland" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="https://github.com/kengreibesland" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="mailto:kengreibesland@gmail.com">E-post</a>
+      <a href="https://www.linkedin.com/in/ken-greibesland" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <span>Tidligere: @Financerevenue</span>
     </div>
   </footer>
 
 </body>
 </html>
-
